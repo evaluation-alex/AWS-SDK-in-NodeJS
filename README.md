@@ -72,7 +72,7 @@ So I've provided a little sample with this, which you can download and run on yo
 
 #### [index.html](index.html)
 
-This files is straight forward. You can look into the file and easily understand the html form. Only thing is we are not submitting form through regular process here we are submittin form data using `AJAX` calls.
+This files is straight forward. You can look into the file and easily understand the html form. Only thing is we are not submitting form through regular process here we are submitting form data using `AJAX` calls.
 
 #### [script.js](script.js)
 
