@@ -1,6 +1,6 @@
 # NodeJS-to-AWS-S3-Bucket
 
-A JavaScript API for sending files to AWS S3 Bucket which are uploaded via a html form and submitted to NodeJS server.
+A JavaScript demo for sending files to AWS S3 Bucket which are uploaded via a html form and submitted to NodeJS server.
 
 <img src ="https://img.shields.io/badge/Language-JavaSript-blue.svg" />
 <img src ="https://img.shields.io/badge/Platform-NodeJS-brightgreen.svg" />
@@ -90,4 +90,80 @@ This file is the main server file. The things being done by this file are:
 
 ---
 
-## The End | Thank You
+## Things to know before writing your own code:
+
+#### Tip 1:
+
+In the file `server/index.js`, line number 21, that is:
+
+```javascript
+21: app.post('/upload_file', multer().single('fileUploaded'), function(req, res, next) {
+```
+
+Here `fileUploaded` is being set from `script.js`:
+
+```javascript
+29: var data = new FormData();
+30: $.each(files, function(key, value) {
+31:   data.append("fileUploaded", value);
+32: });
+```
+
+which is being retrieved at line number 6 in `script.js`:
+
+```javascript
+6: $('input[type=file]').on('change', prepareUpload);
+```
+
+*So if you don't want JavaScript to submit form and want to submit html form directly, please make sure the `name attribute of file input tag is same as of the one defined in multer`.*
+
+#### Tip 2:
+
+For getting other fields such as userId or any text input please use body as on line number 38 in `index.js`:
+
+```javascript
+38: var userId = req.body.userId;
+```
+
+#### Tip 3:
+
+If you want to use the file uploaded on S3 Bucket directly in your website, you have to modify your bucket to give public access for reading the files. Follow these steps:
+
+- Go to https://console.aws.amazon.com
+- Select S3 from Services list
+- Click `Properties` in the left upper corner, a new window in the right will open.
+- Now select your bucket, it will show porperties in the right pane.
+- Click `Permissions` if it's already not open.
+- Click `Edit bucket policy`, a pop up will open.
+- Empty the text box and copy paste this:
+
+```json
+{
+	"Version": "2008-10-17",
+	"Statement": [
+		{
+			"Sid": "AllowPublicRead",
+			"Effect": "Allow",
+			"Principal": {
+				"AWS": "*"
+			},
+			"Action": "s3:GetObject",
+			"Resource": "arn:aws:s3:::BucketName/*"
+		}
+	]
+}
+```
+
+*Please change the `BucketName` in the above json to the bucket name you are using.*
+
+Now to know the link from where you can access these files:
+
+- Go inside a bucket.
+- Select the `Properties` tag again.
+- Search for `Link` in the right pane.
+- Basic structure of the link will always be like: `https://s3.your-bucket-region.amazonaws.com/BucketName/fileName`.
+- You can access any file on the bucket with the above link.
+
+---
+
+## Thank You
