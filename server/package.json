@@ -1,0 +1,36 @@
+{
+  "name": "nodejs-to-aws-s3-bucket",
+  "version": "1.0.0",
+  "description": "A JavaScript API for sending files to AWS S3 Bucket which are uploaded via a html form and submitted to NodeJS server.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harshitvsaxena/NodeJS-to-AWS-S3-Bucket.git"
+  },
+  "keywords": [
+    "aws",
+    "se",
+    "bucket",
+    "node",
+    "js",
+    "file",
+    "upload"
+  ],
+  "author": "Harshit Saxena",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/harshitvsaxena/NodeJS-to-AWS-S3-Bucket/issues"
+  },
+  "homepage": "https://github.com/harshitvsaxena/NodeJS-to-AWS-S3-Bucket#readme",
+  "dependencies": {
+    "aws-sdk": "^2.4.7",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "http": "0.0.0",
+    "multer": "^1.1.0",
+    "socket.io": "^1.4.8"
+  }
+}
