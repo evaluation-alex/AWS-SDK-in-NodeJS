@@ -62,16 +62,29 @@ Now start the server like this:
 $ node index.js
 ```
 
-And see the output at http://localhost:8080
+And see the output at `http://localhost:8080`.
+
+---
 
 ## Explaining Sample
 
 So I've provided a little sample with this, which you can download and run on your localhost. Let me quickly explain how things are working here.
 
-#### index.html
+#### [index.html](index.html)
 
 This files is straight forward. You can look into the file and easily understand the html form. Only thing is we are not submitting form through regular process here we are submittin form data using `AJAX` calls.
 
-#### script.js
+#### [script.js](script.js)
 
-Please look into the file and you can easily understand what is what. This file is sending mea
+Please look into the file and you can easily understand what is what. This file is sending form data through AJAX call to `//localhost:8080/upload_file` which is recieved by the NodeJS server.
+
+#### [server/index.js](server/index.js)
+
+This file is the file is the main server file. The things dome by this file are:
+
+- Create an express app
+-
+
+---
+
+## The End ----- Thank You 
