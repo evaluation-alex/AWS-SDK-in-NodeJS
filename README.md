@@ -83,8 +83,11 @@ Please look into the file and you can easily understand what is what. This file 
 This file is the file is the main server file. The things dome by this file are:
 
 - Create an express app
--
+- Create a http server at port 8080
+- Get the form data using `multer` and `body-parser` modules.
+- Send the file to AWS S3 Bucket using `aws-sdk` module.
+- Update the database for file name or other query related stuff.
 
 ---
 
-## The End ----- Thank You 
+## The End | Thank You
