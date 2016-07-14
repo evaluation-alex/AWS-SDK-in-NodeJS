@@ -28,7 +28,7 @@ io.sockets.on("connection", function(socket){
 
     var s3 = new aws.S3();
 
-    s3.createBucket({Bucket: 'test-js-sdk123'}, function() {
+    s3.createBucket({Bucket: 'BucketName'}, function() {
 
       var timestamp = new Date().getTime();
       var newFileName = timestamp + req.file.originalname;
@@ -37,7 +37,7 @@ io.sockets.on("connection", function(socket){
       var originalFileName = req.file.originalname;
       var userId = req.body.userId; //Set it according to the id you want to search for update on databases
 
-      var params = {Bucket: 'test-js-sdk123', Key: newFileName, Body: req.file.buffer};
+      var params = {Bucket: 'BucketName', Key: newFileName, Body: req.file.buffer};
       s3.putObject(params, function(err, data) {
         if (err) {
           console.log(err);
