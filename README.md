@@ -159,6 +159,7 @@ If you want to use the file uploaded on S3 Bucket directly in your website, you 
 Now to know the link from where you can access these files:
 
 - Go inside a bucket.
+- Select any file inside the bucket.
 - Select the `Properties` tag again.
 - Search for `Link` in the right pane.
 - Basic structure of the link will always be like: `https://s3.your-bucket-region.amazonaws.com/BucketName/fileName`.
