@@ -18,7 +18,7 @@ io.sockets.on("connection", function(socket){
 
   console.log("Connection Established.");
 
-  app.post('/upload_file', multer().single('fileUploaded'), function(req, res) {
+  app.post('/upload_file', multer().single('fileUploaded'), function(req, res, next) {
 
     //got the file finally
     console.log(req.file);
@@ -29,15 +29,39 @@ io.sockets.on("connection", function(socket){
     var s3 = new aws.S3();
 
     s3.createBucket({Bucket: 'test-js-sdk123'}, function() {
-      var params = {Bucket: 'test-js-sdk123', Key: req.file.originalname, Body: req.file.buffer};
+
+      var timestamp = new Date().getTime();
+      var newFileName = timestamp + req.file.originalname;
+
+      //Delete the below two variables if you don't want to update your database
+      var originalFileName = req.file.originalname;
+      var userId = req.body.userId; //Set it according to the id you want to search for update on databases
+
+      var params = {Bucket: 'test-js-sdk123', Key: newFileName, Body: req.file.buffer};
       s3.putObject(params, function(err, data) {
         if (err) {
           console.log(err);
+          res.json({error: 'AWS connection error'});
         } else {
-          console.log("Successfully uploaded data to myBucket/myKey");
+          console.log("File Successfully Uploaded.");
+          res.json({success: 'File Successfully Uploaded.'});
+
+          //Upload the file name and other details to database
+          //Delete this function if you don't want to update your database.
+          updateDatabase(userId, newFileName, originalFileName);
         }
       });
     });
 
   });
 });
+
+function updateDatabase(userId,fileName, originalFileName) {
+  //Function for uploading file data to your database
+  console.log("Updating Database.");
+  console.log("\tUserId: " + userId + "\n\tNewFileName: " + fileName + "\n\tOriginalFileName: " + originalFileName);
+  //Do something - upload it to rethinkDB or MySQL -> write your database connection and query functions here.
+
+  console.log("Database Updated.");
+  return true;
+}

@@ -25,6 +25,10 @@
           <form method="post" enctype="multipart/form-data">
             <input type="file" id="fileUpload" name="files" class="btn btn-default" />
             <br>
+            User Id: <input type="text" id="userId" name="userId" class="form-control" placeholder="Enter userId" value="123" />
+            <br>
+            <pre>$ The above field is for updating the details of user uploading the file, in our database.<br>$ You can skip this and also update the <b>/server/index.js</b> file according to the comments provided there.</pre>
+            <br>
             <input type="submit" id="submitForm" name="submit" value="Submit" class="btn btn-primary" />
           </form>
           <hr>
@@ -40,71 +44,6 @@
 		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script type="text/javascript">
-      var socket = io.connect("/");
-
-      $(document).ready(function() {
-
-        var files;
-        $('input[type=file]').on('change', prepareUpload);
-        $('form').on('submit', uploadFiles);
-
-        // Grab the files and set them to our variable
-        function prepareUpload(event) {
-      		files = event.target.files;
-          $("#status pre").append('\n$ File ready. Press submit.');
-      	}
-
-        // Catch the form submit and upload the files
-        function uploadFiles(event) {
-
-          event.stopPropagation();
-          event.preventDefault();
-
-          //Checking if the file is selected or not.
-          if(typeof files === 'undefined') {
-            $("#status pre").append('\n$ Please select a file and then hit enter.');
-          } else {
-            $("#status pre").append('\n$ Upload processing. Please Wait.');
-          }
-
-          // Create a formdata object and add the files
-          var data = new FormData();
-          $.each(files, function(key, value) {
-            data.append("fileUploaded", value);
-          });
-
-          $.ajax({
-            url: '//localhost:8080/upload_file',
-            type: 'POST',
-            data: data,
-            cache: false,
-            dataType: 'json',
-            processData: false, // Don't process the files
-            contentType: false,
-            success: function(data, textStatus, jqXHR) {
-              if(typeof data.error === 'undefined') {
-                // Success so call function to send data to database
-                //submitFormDataToDatabase(event, data);
-                console.log(data);
-                $("#status pre").append('\n$ Upload Successful.');
-              } else {
-                $("#status pre").append("\n$ Error: " + data.error);
-              }
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-              $("#status pre").append("\n$ Error: " + textStatus);
-            }
-          });
-        }
-
-        function submitFormDataToDatabase() {
-
-        }
-
-      });
-
-
-    </script>
+    <script src="script.js" type="text/javascript"></script>
   </body>
 </html>
