@@ -27,7 +27,7 @@ Our folder setup here is something like this:
 
 Here `index.html` and `script.js` are client files, which our server will server. And all the server related files are saved in `server` folder.
 
-Now got to your terminal and switch to the folder where you have cloned this repository.
+Now go to your terminal and switch to the folder where you have cloned this repository.
 
 ```sh
 $ cd server
