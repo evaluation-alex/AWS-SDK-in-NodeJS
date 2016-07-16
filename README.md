@@ -1,4 +1,4 @@
-# NodeJS-to-AWS-S3-Bucket
+# Save File On AWS S3 Bucket
 
 A JavaScript demo for sending files to AWS S3 Bucket which are uploaded via a html form and submitted to NodeJS server.
 
