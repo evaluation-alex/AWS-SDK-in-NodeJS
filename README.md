@@ -160,7 +160,7 @@ Now to know the link from where you can access these files:
 
 - Go inside a bucket.
 - Select any file inside the bucket.
-- Select the `Properties` tag again.
+- Select the `Properties` tab again.
 - Search for `Link` in the right pane.
 - Basic structure of the link will always be like: `https://s3.your-bucket-region.amazonaws.com/BucketName/fileName`.
 - You can access any file on the bucket with the above link.
